@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abbas Hüseynli | Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #e8f4fd;
+      --card:      #ffffff;
+      --accent:    #2980b9;
+      --accent2:   #1a6ea8;
+      --text:      #1e2d3d;
+      --muted:     #5a7a94;
+      --border:    #b8d9f0;
+      --tag-bg:    #d0eaf8;
+      --tag-text:  #1a5f8a;
+      --shadow:    0 4px 20px rgba(41,128,185,.12);
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 62px;
+    }
+    .nav-logo { font-weight: 700; font-size: 1.15rem; color: var(--accent); letter-spacing: .5px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: .9rem; font-weight: 500;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center;
+      gap: 40px;
+      padding: 80px 5% 60px;
+      text-align: center;
+    }
+    .hero-avatar {
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 5px solid var(--accent);
+  object-fit: cover;
+  box-shadow: 0 8px 28px rgba(41,128,185,.35);
+  background: var(--border);
+  flex-shrink: 0;
+}
+    .hero-text h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; }
+    .hero-text h1 span { color: var(--accent); }
+    .hero-text p.subtitle {
+      margin-top: 8px; color: var(--muted);
+      font-size: 1.05rem; font-weight: 500;
+    }
+    .hero-text p.about {
+  margin-top: 16px;
+  max-width: 560px;
+  font-size: .93rem;
+  line-height: 1.75;
+  color: #3a5a74;
+  text-align: justify;
+  text-align-last: left;
+  word-spacing: .05em;
+  letter-spacing: .3px;
+}
+    .hero-contacts {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center; margin-top: 22px;
+    }
+    .hero-contacts a {
+      display: flex; align-items: center; gap: 7px;
+      text-decoration: none;
+      background: var(--tag-bg); color: var(--tag-text);
+      border-radius: 30px; padding: 7px 16px;
+      font-size: .85rem; font-weight: 500;
+      border: 1px solid var(--border);
+      transition: background .2s, transform .2s;
+    }
+    .hero-contacts a:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+
+    /* ── SECTIONS ── */
+    section { padding: 60px 5%; }
+    section:nth-child(even) { background: rgba(255,255,255,.45); }
+
+    .section-title {
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--accent2);
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+      margin-bottom: 36px;
+    }
+
+    /* ── CARDS GRID ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 22px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(41,128,185,.18); }
+
+    /* Experience card */
+    .card .date {
+      font-size: .78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: .4px;
+      margin-bottom: 6px;
+    }
+    .card .company { font-weight: 700; font-size: 1rem; margin-bottom: 3px; }
+    .card .role { color: var(--muted); font-size: .88rem; margin-bottom: 12px; }
+    .card ul { padding-left: 18px; }
+    .card ul li { font-size: .85rem; color: #3a5a74; line-height: 1.65; margin-bottom: 5px; }
+
+    /* Skill card */
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      transition: transform .25s;
+    }
+    .skill-card:hover { transform: translateY(-3px); }
+    .skill-card .sk-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .skill-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      background: var(--tag-bg); color: var(--tag-text);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: .78rem; font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    /* Language bars */
+    .lang-item { margin-bottom: 16px; }
+    .lang-item .lang-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: .88rem; }
+    .lang-bar { background: var(--border); border-radius: 10px; height: 8px; overflow: hidden; }
+    .lang-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), #5dade2); }
+
+    /* Qualities */
+    .quality-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 30px; padding: 9px 18px;
+      font-size: .87rem; font-weight: 500;
+      box-shadow: var(--shadow);
+      transition: background .2s, color .2s;
+    }
+    .quality-chip:hover { background: var(--accent); color: #fff; }
+    .qualities-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Project card */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 34px rgba(41,128,185,.2); }
+    .project-card .p-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #5dade2);
+      color: #fff; border-radius: 8px;
+      padding: 4px 12px; font-size: .75rem; font-weight: 600;
+      width: fit-content;
+    }
+    .project-card h3 { font-size: 1rem; font-weight: 700; }
+    .project-card p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+    .project-card .p-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .project-card .p-tools span {
+      background: var(--tag-bg); color: var(--tag-text);
+      border-radius: 16px; padding: 3px 10px; font-size: .75rem; font-weight: 500;
+    }
+    .coming-soon {
+      text-align: center; padding: 50px 20px;
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      color: var(--muted); font-size: .95rem;
+    }
+    .coming-soon i { font-size: 2.5rem; margin-bottom: 12px; color: var(--accent); opacity: .5; display: block; }
+
+    /* Cert */
+    .cert-card {
+      background: linear-gradient(135deg, #e8f4fd 0%, #d0eaf8 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+    .cert-icon { font-size: 2rem; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+    .cert-card h4 { font-weight: 700; font-size: .98rem; }
+    .cert-card p { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+    .cert-card .cert-id { margin-top: 8px; display: inline-block; background: var(--accent); color: #fff; border-radius: 20px; padding: 3px 12px; font-size: .75rem; font-weight: 600; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 28px;
+      color: var(--muted); font-size: .82rem;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.6);
+    }
+
+    @media(max-width:600px){
+      nav { padding: 0 4%; }
+      .nav-links { gap: 16px; }
+      .hero { padding: 50px 4% 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Abbas Hüseynli</div>
+  <ul class="nav-links">
+    <li><a href="#haqqimda">Haqqımda</a></li>
+    <li><a href="#tecrube">Təcrübə</a></li>
+    <li><a href="#bacariqlar">Bacarıqlar</a></li>
+    <li><a href="#proyektler">Proyektlər</a></li>
+    <li><a href="#sertifikatlar">Sertifikatlar</a></li>
+    <li><a href="#cvyukle">CV Yüklə</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="haqqimda">
+  <div class="hero">
+    <!-- Şəkil varsa: <img class="hero-avatar" src="photo.jpg" alt="Abbas Hüseynli"> -->
+    <img class="hero-avatar" src="https://i.postimg.cc/gkhFYsQq/1000074731-(2).png" alt="Abbas Hüseynli">
+
+    <div class="hero-text">
+      <h1>Abbas <span>Hüseynli</span></h1>
+      <p class="subtitle">📊 Data Analitika | Power BI · SQL · Python</p>
+      <p class="about">
+        Azərbaycan Dövlət İqtisad Universitetinin "İqtisadiyyat" ixtisasını
+        bakalavr dərəcəsi ilə bitirmişəm. Çalışdığım mühitdə məsuliyyətli,
+        loyal və inkişafyönümlü olmaq hər zaman hədəfimdir. Yeniliklərə açıq
+        və araşdırma yönümlü iş prinsipimlə işlədiyim kollektivə maksimum
+        fayda verəcəyimə əminəm.
+      </p>
+      <div class="hero-contacts">
+        <a href="tel:+994556743030"><i class="fa-solid fa-phone"></i>(+994 55) 674 30 30</a>
+        <a href="mailto:Abbashuseynli97@gmail.com"><i class="fa-solid fa-envelope"></i>Abbashuseynli97@gmail.com</a>
+        <a href="https://maps.app.goo.gl/cStJqyPFX8gS3GPz7"></i>Bakı, Azərbaycan</a>
+        <a href="https://github.com/huseynliabbas" target="_blank"><i class="fa-brands fa-github"></i>GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="tecrube">
+  <h2 class="section-title">İş Təcrübəsi</h2>
+  <div class="grid-2">
+
+    <div class="card">
+      <div class="date">11/2020 — 11/2024</div>
+      <div class="company">"Skybox Cargo" MMC</div>
+      <div class="role">Menecer</div>
+      <ul>
+        <li>Gündəlik əməliyyatların izlənməsi — müştəri ehtiyaclarının müəyyənləşdirilməsi, şöbələrarası əməkdaşlıq, işçilərə nəzarət</li>
+        <li>Müxtəlif komandaların (SMM, zəng mərkəzi, sifariş ofisi) tapşırıq üzrə koordinasiyası</li>
+        <li>Email və telefon vasitəsilə müştəri problemlərinin həlli</li>
+        <li>Müştəri məmnuniyyəti üzrə aylıq hesabatların hazırlanması</li>
+        <li>Gömrük bəyannamələri, invoys və mal-müşaiyət sənədlərinin tərtib edilməsi</li>
+        <li>Bazar qiymətlərinin monitorinqi, güvənli yerli və xarici logistika şirkətlərinin tapılması və risklərin dəyərləndirilməsi.</li>
+
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="date">02/2019 — 06/2019</div>
+      <div class="company">Dövlət Sosial Müdafiə Fondu</div>
+      <div class="role">"Sosial ödənişlər" departamentində təcrübə</div>
+      <ul>
+        <li>Şöbə rəhbərinin tapşırığı ilə sənədlər üzərində qeydlər və düzəlişlər, cavabdeh şəxslərə e-mail göndərilməsi</li>
+        <li>Müvafiq şəxslərin sosial ödəmə tarixçəsinin araşdırılması və aidiyyatlı şöbələrə yönləndirilməsi</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="bacariqlar">
+  <h2 class="section-title">Bacarıqlar & Dil Bilikləri</h2>
+
+  <div class="grid-3" style="margin-bottom:30px;">
+
+    <div class="skill-card">
+      <div class="sk-icon">📊</div>
+      <h4>Data Analitika Alətləri</h4>
+      <div class="tags">
+        <span class="tag">Microsoft Power BI</span>
+        <span class="tag">Oracle SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="sk-icon">💻</div>
+      <h4>Proqram Bilikləri</h4>
+      <div class="tags">
+        <span class="tag">MS Office</span>
+        <span class="tag">MS Windows</span>
+        <span class="tag">Canva</span>
+        <span class="tag">Adobe</span>
+        <span class="tag">AI Alətlər (Tools)</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="sk-icon">🌐</div>
+      <h4>Dil Bilikləri</h4>
+      <div style="margin-top:8px;">
+        <div class="lang-item">
+          <div class="lang-header"><span>Azərbaycan</span><span>Ana dili</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-header"><span>Türk</span><span>Əla</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-header"><span>İngilis</span><span>Pre-Intermediate</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:55%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Qualities -->
+  <h3 style="font-size:1rem;font-weight:600;color:var(--muted);margin-bottom:16px;">Şəxsi Keyfiyyətlər</h3>
+  <div class="qualities-wrap">
+    <div class="quality-chip">🧠 Analitik düşüncə</div>
+    <div class="quality-chip">🔧 Problem həlli</div>
+    <div class="quality-chip">⚡ Multitasking</div>
+    <div class="quality-chip">🤝 Kommunikasiya</div>
+    <div class="quality-chip">🔄 Adaptasiya</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyektler">
+  <h2 class="section-title">Proyektlər</h2>
+  <div class="coming-soon">
+    <i class="fa-solid fa-chart-bar"></i>
+    Hazırda proyektlər üzərində işləyirəm. Tezliklə burada görünəcəklər! 🚀
+  </div>
+
+  <!-- Proyekt əlavə etdikdə aşağıdakı bloku açıq saxla -->
+  <!--
+  <div class="grid-2" style="margin-top:24px;">
+    <div class="project-card">
+      <span class="p-badge">Power BI</span>
+      <h3>Satış Dashboard</h3>
+      <p>Aylıq satış məlumatlarının vizuallaşdırılması və KPI izləmə paneli.</p>
+      <div class="p-tools">
+        <span>Power BI</span><span>Excel</span><span>DAX</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="p-badge">SQL + Python</span>
+      <h3>Müştəri Analizi</h3>
+      <p>SQL ilə verilənlərin çıxarılması, Python ilə segmentasiya və hesabat.</p>
+      <div class="p-tools">
+        <span>Oracle SQL</span><span>Python</span><span>Pandas</span>
+      </div>
+    </div>
+  </div>
+  -->
+</section>
+
+<!-- CERTIFICATES -->
+<section id="sertifikatlar">
+  <h2 class="section-title">Sertifikatlar & Təhsil</h2>
+  <div class="grid-2">
+
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div>
+        <h4>Data Analitika Kursu</h4>
+        <p>"İnnab Business School" — 7 ay müddətli intensiv proqram<br>
+        <span style="font-size:.8rem;color:var(--muted);">04/2024 — 11/2024</span></p>
+        <span class="cert-id">ID: DA105519</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div>
+        <h4>Azərbaycan Dövlət İqtisad Universiteti</h4>
+        <p>İqtisadiyyat — Bakalavr dərəcəsi<br>
+        <span style="font-size:.8rem;color:var(--muted);">2015 — 2019</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- CV YÜKLƏ -->
+<section id="cvyukle">
+  <h2 class="section-title">CV-mi Yüklə</h2>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding:20px 0;">
+    
+    <div style="
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 48px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    ">
+      <i class="fa-solid fa-file-pdf" style="font-size:3.5rem; color:var(--accent); margin-bottom:16px; display:block;"></i>
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:8px;">Abbas Hüseynli — CV</h3>
+      <p style="color:var(--muted); font-size:.88rem; margin-bottom:24px; line-height:1.6;">
+        Mənim CV-mi PDF formatında yükləyə bilərsiniz.
+      </p>
+      <a 
+        href="https://drive.google.com/file/d/1CaM57VrwBAf6wTZYdzvC5F7TjoW255Wz/view?usp=sharing" 
+        target="_blank"
+        rel="noopener noreferrer"
+        style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: linear-gradient(135deg, var(--accent), #5dade2);
+          color: #fff;
+          text-decoration: none;
+          padding: 14px 32px;
+          border-radius: 30px;
+          font-size: .95rem;
+          font-weight: 600;
+          box-shadow: 0 4px 16px rgba(41,128,185,.35);
+          transition: transform .2s, box-shadow .2s;
+        "
+        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 24px rgba(41,128,185,.45)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 16px rgba(41,128,185,.35)'"
+      >
+        <i class="fa-solid fa-download"></i>
+        CV-ni Yüklə 
+      </a>
+    </div>
+
+    <p style="color:var(--muted); font-size:.8rem;">
+      <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i>
+      &nbsp;Google Drive · PDF
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 / Abbas Hüseynli</p>
+  <p style="margin-top:6px;">
+    <a href="mailto:Abbashuseynli97@gmail.com" style="color:var(--accent);text-decoration:none;">Abbashuseynli97@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="tel:+994556743030" style="color:var(--accent);text-decoration:none;">(+994 55) 674 30 30</a>
+  </p>
+</footer>
+
+</body>
+</html>
