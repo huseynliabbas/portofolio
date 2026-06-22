@@ -628,16 +628,15 @@
   font-family: 'Inter', sans-serif;
 ">
   <i class="fa-solid fa-eye"></i>
-  <span id="visitor-count">0</span> ziyarətçi
+  <span id="visitor-count">...</span> ziyarətçi
 </div>
 
 <script>
-   const counterName = 'huseynliabbas'; 
+   const counterId = 'ut_g3HdebUaQVlbGqOljDagxr0wHt4C5XdTNB6INsYi';
   
-  fetch(`https://api.countapi.xyz/hit/huseynliabbas/visits`)
+  fetch(`https://api.counterapi.dev/v1/counter/ut_g3HdebUaQVlbGqOljDagxr0wHt4C5XdTNB6INsYi/up`)
     .then(response => response.json())
     .then(data => {
-      console.log('Ziyarətçi sayı:', data.value);
       document.getElementById('visitor-count').textContent = data.value;
     })
     .catch(error => {
