@@ -611,7 +611,6 @@
 </script>
   <!-- ── AI CHAT BOT ── -->
 <style>
-  /* CHAT BUTTON */
   #chat-btn {
     position: fixed;
     bottom: 24px;
@@ -619,7 +618,7 @@
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #5dade2);
+    background: linear-gradient(135deg, #2980b9, #5dade2);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -635,7 +634,7 @@
     transform: scale(1.1);
     box-shadow: 0 10px 32px rgba(41,128,185,.55);
   }
-  #chat-btn .chat-badge {
+  .chat-badge {
     position: absolute;
     top: -4px;
     right: -4px;
@@ -656,8 +655,6 @@
     0%,100% { transform: scale(1); }
     50%      { transform: scale(1.2); }
   }
-
-  /* CHAT WINDOW */
   #chat-window {
     position: fixed;
     bottom: 94px;
@@ -665,7 +662,7 @@
     width: 360px;
     max-height: 520px;
     background: #fff;
-    border: 1px solid var(--border);
+    border: 1px solid #b8d9f0;
     border-radius: 18px;
     box-shadow: 0 16px 48px rgba(41,128,185,.22);
     z-index: 1000;
@@ -683,10 +680,8 @@
     opacity: 1;
     pointer-events: all;
   }
-
-  /* HEADER */
   .chat-header {
-    background: linear-gradient(135deg, var(--accent), #5dade2);
+    background: linear-gradient(135deg, #2980b9, #5dade2);
     color: #fff;
     padding: 14px 18px;
     display: flex;
@@ -705,18 +700,15 @@
     font-size: 1.1rem;
     flex-shrink: 0;
   }
-  .chat-header-info .chat-name {
-    font-weight: 700;
-    font-size: .92rem;
-  }
-  .chat-header-info .chat-status {
+  .chat-name { font-weight: 700; font-size: .92rem; }
+  .chat-status {
     font-size: .72rem;
     opacity: .85;
     display: flex;
     align-items: center;
     gap: 5px;
   }
-  .chat-header-info .chat-status::before {
+  .chat-status::before {
     content: '';
     width: 7px;
     height: 7px;
@@ -741,8 +733,6 @@
     flex-shrink: 0;
   }
   .chat-close:hover { background: rgba(255,255,255,.35); }
-
-  /* MESSAGES */
   .chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -754,23 +744,23 @@
     scroll-behavior: smooth;
   }
   .chat-messages::-webkit-scrollbar { width: 4px; }
-  .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-
-  /* MESSAGE BUBBLE */
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: #b8d9f0;
+    border-radius: 10px;
+  }
   .msg {
     display: flex;
     gap: 8px;
     align-items: flex-end;
     max-width: 100%;
   }
-  .msg.bot { flex-direction: row; }
+  .msg.bot  { flex-direction: row; }
   .msg.user { flex-direction: row-reverse; }
-
   .msg-avatar {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #5dade2);
+    background: linear-gradient(135deg, #2980b9, #5dade2);
     color: #fff;
     font-size: .7rem;
     display: flex;
@@ -781,62 +771,68 @@
   .msg-avatar.user-av {
     background: linear-gradient(135deg, #8e44ad, #c0392b);
   }
-
   .msg-bubble {
     padding: 10px 14px;
     border-radius: 16px;
     font-size: .84rem;
-    line-height: 1.55;
+    line-height: 1.6;
     max-width: 82%;
     word-break: break-word;
   }
   .msg.bot .msg-bubble {
     background: #fff;
-    border: 1px solid var(--border);
+    border: 1px solid #b8d9f0;
     border-bottom-left-radius: 4px;
-    color: var(--text);
+    color: #1e2d3d;
     box-shadow: 0 2px 8px rgba(41,128,185,.08);
   }
   .msg.user .msg-bubble {
-    background: linear-gradient(135deg, var(--accent), #5dade2);
+    background: linear-gradient(135deg, #2980b9, #5dade2);
     color: #fff;
     border-bottom-right-radius: 4px;
   }
-
-  /* TYPING */
+  .typing-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
   .typing-dots {
     display: flex;
     gap: 4px;
     align-items: center;
+    background: #fff;
+    border: 1px solid #b8d9f0;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
     padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(41,128,185,.08);
   }
   .typing-dots span {
     width: 7px;
     height: 7px;
-    background: var(--accent);
+    background: #2980b9;
     border-radius: 50%;
-    animation: typing 1.2s infinite;
-    opacity: .4;
+    animation: bounce 1.2s infinite;
+    opacity: .5;
   }
   .typing-dots span:nth-child(2) { animation-delay: .2s; }
   .typing-dots span:nth-child(3) { animation-delay: .4s; }
-  @keyframes typing {
+  @keyframes bounce {
     0%,60%,100% { transform: translateY(0); opacity:.4; }
-    30%          { transform: translateY(-6px); opacity:1; }
+    30%          { transform: translateY(-7px); opacity:1; }
   }
-
-  /* QUICK QUESTIONS */
   .quick-questions {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    padding: 0 16px 12px;
+    padding: 10px 14px;
     background: #f8fbfe;
+    border-top: 1px solid #e8f4fd;
   }
   .quick-q {
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    border: 1px solid var(--border);
+    background: #d0eaf8;
+    color: #1a5f8a;
+    border: 1px solid #b8d9f0;
     border-radius: 20px;
     padding: 5px 12px;
     font-size: .74rem;
@@ -846,15 +842,13 @@
     font-family: 'Inter', sans-serif;
   }
   .quick-q:hover {
-    background: var(--accent);
+    background: #2980b9;
     color: #fff;
-    border-color: var(--accent);
+    border-color: #2980b9;
   }
-
-  /* INPUT AREA */
   .chat-input-area {
     padding: 12px 14px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #b8d9f0;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -863,22 +857,22 @@
   }
   #chat-input {
     flex: 1;
-    border: 1px solid var(--border);
+    border: 1px solid #b8d9f0;
     border-radius: 24px;
     padding: 9px 16px;
     font-size: .84rem;
     outline: none;
     font-family: 'Inter', sans-serif;
-    color: var(--text);
+    color: #1e2d3d;
     background: #f8fbfe;
     transition: border-color .2s;
   }
-  #chat-input:focus { border-color: var(--accent); }
+  #chat-input:focus { border-color: #2980b9; }
   #chat-send {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #5dade2);
+    background: linear-gradient(135deg, #2980b9, #5dade2);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -898,36 +892,35 @@
     cursor: not-allowed;
     transform: none;
   }
-
-  /* MOBILE */
   @media(max-width: 480px) {
     #chat-window {
-      left: 12px;
-      right: 12px;
+      left: 10px;
+      right: 10px;
       width: auto;
-      bottom: 84px;
-      max-height: 70vh;
+      bottom: 82px;
+      max-height: 68vh;
     }
     #chat-btn {
       left: 16px;
       bottom: 16px;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
     }
   }
 </style>
 
 <!-- CHAT BUTTON -->
-<button id="chat-btn" onclick="toggleChat()" title="Sual ver">
+<button id="chat-btn" onclick="toggleChat()">
   <i class="fa-solid fa-comments"></i>
   <span class="chat-badge">?</span>
 </button>
 
 <!-- CHAT WINDOW -->
 <div id="chat-window">
-
-  <!-- Header -->
   <div class="chat-header">
     <div class="chat-header-avatar">🤖</div>
-    <div class="chat-header-info">
+    <div>
       <div class="chat-name">Abbas Botu</div>
       <div class="chat-status">Aktiv — sual ver</div>
     </div>
@@ -936,26 +929,23 @@
     </button>
   </div>
 
-  <!-- Messages -->
   <div class="chat-messages" id="chat-messages"></div>
 
-  <!-- Quick Questions -->
-  <div class="quick-questions" id="quick-questions">
-    <button class="quick-q" onclick="sendQuick('Haqqında məlumat ver')">👤 Haqqında</button>
+  <div class="quick-questions" id="quick-qs">
+    <button class="quick-q" onclick="sendQuick('Abbas haqqında məlumat ver')">👤 Haqqında</button>
     <button class="quick-q" onclick="sendQuick('İş təcrübəsi nədir?')">💼 Təcrübə</button>
     <button class="quick-q" onclick="sendQuick('Hansı bacarıqlara sahibsən?')">🛠 Bacarıqlar</button>
     <button class="quick-q" onclick="sendQuick('Sertifikatların hansılardır?')">🏆 Sertifikat</button>
     <button class="quick-q" onclick="sendQuick('Əlaqə məlumatları nədir?')">📞 Əlaqə</button>
   </div>
 
-  <!-- Input -->
   <div class="chat-input-area">
     <input
       id="chat-input"
       type="text"
       placeholder="Sual yazın..."
       maxlength="300"
-      onkeydown="if(event.key==='Enter') sendMessage()"
+      onkeydown="if(event.key==='Enter' && !event.shiftKey){ event.preventDefault(); sendMessage(); }"
     />
     <button id="chat-send" onclick="sendMessage()">
       <i class="fa-solid fa-paper-plane"></i>
@@ -964,273 +954,245 @@
 </div>
 
 <script>
-// ════════════════════════════════════════════
-//  ⚙️  BURAYA API KEY-İNİZİ YAZIN
-// ════════════════════════════════════════════
-const GEMINI_API_KEY = 'AQ.Ab8RN6KlGmuVWYurny5PNNof3Rlvw3lGTRo1gdU79zokdh4_Vw';
+// ══════════════════════════════════════════
+//  🔑  API KEY — BURAYA YAZIN
+// ══════════════════════════════════════════
+const GEMINI_KEY = 'AQ.Ab8RN6KlGmuVWYurny5PNNof3Rlvw3lGTRo1gdU79zokdh4_Vw';
 
-// ════════════════════════════════════════════
-//  ABBAS HAQQINDA SYSTEM PROMPT
-// ════════════════════════════════════════════
-const SYSTEM_PROMPT = `
-Sen Abbas Hüseynlinin portföy saytındaki AI assistantısın. 
-Adın "Abbas Botu"dur. YALNIZ Abbas Hüseynli haqqında sualları cavablandır.
-Əgər sual Abbas ilə əlaqədar deyilsə, nəzakətlə "Bu sual mənim sahəm xaricindədir, Abbas haqqında sual ver" de.
-Cavabların qısa, aydın və Azərbaycan dilində olsun.
+// ══════════════════════════════════════════
+//  SYSTEM PROMPT
+// ══════════════════════════════════════════
+const SYS = `Sen "Abbas Botu"sun — Abbas Hüseynlinin portföy saytındakı köməkçisən.
+YALNIZ Abbas Hüseynli haqqında sualları cavabla. Başqa mövzularda:
+"Bu mövzu mənim sahəm xaricindədir. Abbas haqqında sual verə bilərsiniz." de.
+Cavablar qısa, mehriban və Azərbaycan dilində olsun.
 
-ABBAS HÜSEYNLİ HAQQINDA MƏLUMATLAR:
+MƏLUMATLAR:
 
-👤 ŞƏXSİ:
+ŞƏXSİ:
 - Ad: Abbas Hüseynli
 - Yer: Bakı, Azərbaycan
 - Email: Abbashuseynli97@gmail.com
 - Telefon: +994556743030
 
-🎓 TƏHSİL:
+TƏHSİL:
 - Azərbaycan Dövlət İqtisad Universiteti (ADİU)
-- İxtisas: İqtisadiyyat — Bakalavr
-- İllər: 2015–2019
+- İxtisas: İqtisadiyyat — Bakalavr (2015–2019)
 
-💼 İŞ TƏCRÜBƏSİ:
-1) "Skybox Cargo" MMC — Menecer (11/2020 – 11/2024)
-   - Gündəlik əməliyyatların idarə edilməsi
-   - Müştəri ehtiyaclarının müəyyənləşdirilməsi
+İŞ TƏCRÜBƏSİ:
+1) Skybox Cargo MMC — Menecer (11/2020–11/2024)
+   - Gündəlik əməliyyatların idarəsi, müştəri ehtiyacları
    - SMM, zəng mərkəzi, sifariş ofisinin koordinasiyası
-   - Müştəri problemlərinin həlli (email/telefon)
-   - Aylıq müştəri məmnuniyyəti hesabatları
-   - Gömrük bəyannamələri və logistika sənədlərinin hazırlanması
-   - Bazar qiymətlərinin monitorinqi, yerli/xarici logistika şirkətlərinin qiymətləndirilməsi
+   - Müştəri problemlərinin həlli, aylıq hesabatlar
+   - Gömrük bəyannamələri, logistika sənədləri
+   - Bazar qiymətlərinin monitorinqi
 
-2) Dövlət Sosial Müdafiə Fondu — Təcrübəçi (02/2019 – 06/2019)
-   - "Sosial ödənişlər" departamentində
-   - Sənəd üzərində qeydlər və düzəlişlər
-   - Sosial ödəmə tarixçəsinin araşdırılması
+2) Dövlət Sosial Müdafiə Fondu — Təcrübəçi (02/2019–06/2019)
+   - Sosial ödənişlər departamenti
+   - Sənəd düzəlişləri, sosial ödəmə tarixçəsinin araşdırılması
 
-🛠 BACARIQLAR:
+BACARIQLAR:
 - Data Analitika: Power BI, Oracle SQL, Python, Excel
-- Proqramlar: MS Office, MS Windows, Canva, Adobe, AI Alətlər
+- Proqramlar: MS Office, Canva, Adobe, AI Alətlər
 - Dillər: Azərbaycan (ana dili), Türk (əla), İngilis (Pre-Intermediate)
 
-🏆 SERTİFİKATLAR:
-- Data Analitika Kursu — "İnnab Business School" (04/2024–11/2024), ID: DA105519
+SERTİFİKAT:
+- Data Analitika — İnnab Business School (04/2024–11/2024), ID: DA105519
 
-💡 ŞƏXSİ KEYFİYYƏTLƏR:
-- Analitik düşüncə, Problem həlli, Multitasking, Kommunikasiya, Adaptasiya
+ŞƏXSİ KEYFİYYƏTLƏR:
+Analitik düşüncə, Problem həlli, Multitasking, Kommunikasiya, Adaptasiya`;
 
-🎯 MƏQSƏD:
-Məsuliyyətli, loyal, inkişafyönümlü, yeniliklərə açıq və araşdırma yönümlü mütəxəssis kimi çalışmaq.
-`;
-
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
 //  STATE
-// ════════════════════════════════════════════
-let chatOpen = false;
-let isLoading = false;
-let conversationHistory = [];
-let firstOpen = true;
+// ══════════════════════════════════════════
+let chatOpen   = false;
+let loading    = false;
+let firstOpen  = true;
+let history    = [];
 
-// ════════════════════════════════════════════
-//  TOGGLE CHAT
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
+//  TOGGLE
+// ══════════════════════════════════════════
 function toggleChat() {
   chatOpen = !chatOpen;
-  const win = document.getElementById('chat-window');
-  const btn = document.getElementById('chat-btn');
-  const badge = btn.querySelector('.chat-badge');
+  const win   = document.getElementById('chat-window');
+  const btn   = document.getElementById('chat-btn');
 
   if (chatOpen) {
     win.classList.add('open');
     btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-    badge && badge.remove();
 
-    // İlk açılışda karşılama mesajı
     if (firstOpen) {
       firstOpen = false;
       setTimeout(() => {
-        addMessage('bot', '👋 Salam! Mən Abbas Botu-yam.\n\nAbbas Hüseynli haqqında hər hansı sualınız varsa, cavablamağa hazıram. Aşağıdakı sürətli suallardan istifadə edə bilərsiniz. 😊');
-      }, 400);
+        addMsg('bot',
+          '👋 Salam! Mən Abbas Botu-yam.\n\n' +
+          'Abbas Hüseynli haqqında hər hansı sualınızı verə bilərsiniz. ' +
+          'Aşağıdakı sürətli suallardan da istifadə edə bilərsiniz. 😊'
+        );
+      }, 350);
     }
-
-    // Scroll to bottom
-    setTimeout(scrollToBottom, 100);
   } else {
     win.classList.remove('open');
-    btn.innerHTML = '<i class="fa-solid fa-comments"></i>';
+    btn.innerHTML = '<i class="fa-solid fa-comments"></i><span class="chat-badge">?</span>';
   }
 }
 
-// ════════════════════════════════════════════
-//  ADD MESSAGE
-// ════════════════════════════════════════════
-function addMessage(role, text) {
-  const container = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = `msg ${role}`;
+// ══════════════════════════════════════════
+//  MESAJ ƏLAVƏ ET
+// ══════════════════════════════════════════
+function addMsg(role, text) {
+  const box = document.getElementById('chat-messages');
 
-  const avatar = document.createElement('div');
-  avatar.className = role === 'bot' ? 'msg-avatar' : 'msg-avatar user-av';
-  avatar.textContent = role === 'bot' ? '🤖' : '👤';
+  const wrap   = document.createElement('div');
+  wrap.className = `msg ${role}`;
+
+  const av     = document.createElement('div');
+  av.className = role === 'bot' ? 'msg-avatar' : 'msg-avatar user-av';
+  av.textContent = role === 'bot' ? '🤖' : '👤';
 
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
+  bubble.innerHTML = escHtml(text).replace(/\n/g, '<br>');
 
-  // Satır sonlarını <br> yap
-  bubble.innerHTML = text.replace(/\n/g, '<br>');
-
-  div.appendChild(avatar);
-  div.appendChild(bubble);
-  container.appendChild(div);
-  scrollToBottom();
+  wrap.appendChild(av);
+  wrap.appendChild(bubble);
+  box.appendChild(wrap);
+  scrollBot();
 }
 
-// ════════════════════════════════════════════
-//  TYPING INDICATOR
-// ════════════════════════════════════════════
+function escHtml(t) {
+  return t.replace(/&/g,'&amp;')
+          .replace(/</g,'&lt;')
+          .replace(/>/g,'&gt;')
+          .replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════════
+//  TYPING
+// ══════════════════════════════════════════
 function showTyping() {
-  const container = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = 'msg bot';
-  div.id = 'typing-indicator';
+  const box  = document.getElementById('chat-messages');
+  const wrap = document.createElement('div');
+  wrap.id    = 'typing';
+  wrap.className = 'typing-wrap';
 
-  const avatar = document.createElement('div');
-  avatar.className = 'msg-avatar';
-  avatar.textContent = '🤖';
+  const av   = document.createElement('div');
+  av.className = 'msg-avatar';
+  av.textContent = '🤖';
 
-  const bubble = document.createElement('div');
-  bubble.className = 'msg-bubble';
-  bubble.style.padding = '0';
-  bubble.innerHTML = `<div class="typing-dots">
-    <span></span><span></span><span></span>
-  </div>`;
+  wrap.innerHTML = `
+    <div class="msg-avatar">🤖</div>
+    <div class="typing-dots">
+      <span></span><span></span><span></span>
+    </div>`;
 
-  div.appendChild(avatar);
-  div.appendChild(bubble);
-  container.appendChild(div);
-  scrollToBottom();
+  box.appendChild(wrap);
+  scrollBot();
 }
 
-function removeTyping() {
-  const el = document.getElementById('typing-indicator');
+function hideTyping() {
+  const el = document.getElementById('typing');
   if (el) el.remove();
 }
 
-// ════════════════════════════════════════════
-//  SCROLL
-// ════════════════════════════════════════════
-function scrollToBottom() {
-  const container = document.getElementById('chat-messages');
-  container.scrollTop = container.scrollHeight;
+function scrollBot() {
+  const box = document.getElementById('chat-messages');
+  box.scrollTop = box.scrollHeight;
 }
 
-// ════════════════════════════════════════════
-//  QUICK QUESTION
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
+//  QUICK
+// ══════════════════════════════════════════
 function sendQuick(text) {
-  document.getElementById('quick-questions').style.display = 'none';
+  const qs = document.getElementById('quick-qs');
+  if (qs) qs.style.display = 'none';
   document.getElementById('chat-input').value = text;
   sendMessage();
 }
 
-// ════════════════════════════════════════════
-//  SEND MESSAGE → GEMINI API
-// ════════════════════════════════════════════
+// ══════════════════════════════════════════
+//  SEND — GEMINI 1.5 FLASH
+// ══════════════════════════════════════════
 async function sendMessage() {
-  const input = document.getElementById('chat-input');
+  const input   = document.getElementById('chat-input');
   const sendBtn = document.getElementById('chat-send');
-  const userText = input.value.trim();
+  const text    = input.value.trim();
 
-  if (!userText || isLoading) return;
+  if (!text || loading) return;
 
-  addMessage('user', userText);
+  addMsg('user', text);
   input.value = '';
-  isLoading = true;
+  loading = true;
   sendBtn.disabled = true;
   showTyping();
 
-  conversationHistory.push({
-    role: 'user',
-    parts: [{ text: userText }]
-  });
+  history.push({ role: 'user', parts: [{ text }] });
 
-  // ── API KEY BURAYA ──
-  const API_KEY = 'AQ.Ab8RN6KlGmuVWYurny5PNNof3Rlvw3lGTRo1gdU79zokdh4_Vw';
+  const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`;
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AQ.Ab8RN6KlGmuVWYurny5PNNof3Rlvw3lGTRo1gdU79zokdh4_Vw}`;
-
-  const body = {
-    system_instruction: {
-      parts: [{ text: SYSTEM_PROMPT }]
-    },
-    contents: conversationHistory,
+  const payload = {
+    system_instruction: { parts: [{ text: SYS }] },
+    contents: history,
     generationConfig: {
       temperature: 0.7,
-      maxOutputTokens: 512
-    }
+      maxOutputTokens: 400,
+      topP: 0.9
+    },
+    safetySettings: [
+      { category: 'HARM_CATEGORY_HARASSMENT',        threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_HATE_SPEECH',       threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' }
+    ]
   };
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+    const res = await fetch(URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
     });
 
-    // Status kodunu konsola yaz
-    console.log('API Status:', response.status);
+    const data = await res.json();
 
-    // Cavabı mətn kimi oxu
-    const rawText = await response.text();
-    console.log('API Raw Response:', rawText);
+    // ── CAVAB ÇIXARMA ──
+    let reply = '';
 
-    if (!response.ok) {
-      // Status koduna görə xəta mesajı
-      if (response.status === 400) {
-        removeTyping();
-        addMessage('bot', '❌ API açarı səhvdir və ya sorğu formatı yanlışdır. Console-u yoxlayın (F12).');
-      } else if (response.status === 403) {
-        removeTyping();
-        addMessage('bot', '❌ API açarına icazə yoxdur. Google AI Studio-da key-i yoxlayın.');
-      } else if (response.status === 429) {
-        removeTyping();
-        addMessage('bot', '⏳ Limit aşıldı. Bir az gözləyib yenidən cəhd edin.');
-      } else {
-        removeTyping();
-        addMessage('bot', `❌ Server xətası: ${response.status}. Console-da detalları görə bilərsiniz.`);
-      }
-      return;
+    if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
+      reply = data.candidates[0].content.parts[0].text;
+
+    } else if (data?.candidates?.[0]?.finishReason === 'SAFETY') {
+      reply = 'Bu sual təhlükəsizlik filtrindən keçmədi. Fərqli sual verə bilərsiniz.';
+
+    } else if (data?.error) {
+      const code = data.error.code || '';
+      const msg  = data.error.message || '';
+      console.error('Gemini API xətası:', code, msg);
+
+      if (code === 400)   reply = '❌ Sorğu formatı səhvdir. (400)';
+      else if (code === 403) reply = '❌ API icazəsi yoxdur. Key-i yoxlayın. (403)';
+      else if (code === 429) reply = '⏳ Çox tez-tez sorğu. Bir az gözləyin. (429)';
+      else                   reply = `❌ API xətası: ${msg}`;
+
+    } else {
+      console.warn('Gözlənilməz cavab strukturu:', JSON.stringify(data));
+      reply = 'Cavab alına bilmədi. Yenidən cəhd edin.';
     }
 
-    // JSON parse et
-    const data = JSON.parse(rawText);
-    console.log('Parsed data:', data);
-
-    const botReply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      'Cavab alına bilmədi, yenidən cəhd edin.';
-
-    conversationHistory.push({
-      role: 'model',
-      parts: [{ text: botReply }]
-    });
-
-    removeTyping();
-    addMessage('bot', botReply);
+    history.push({ role: 'model', parts: [{ text: reply }] });
+    hideTyping();
+    addMsg('bot', reply);
 
   } catch (err) {
-    console.error('FETCH XƏTASI:', err.name, err.message);
-
-    removeTyping();
-
-    if (err.name === 'TypeError' && err.message.includes('fetch')) {
-      addMessage('bot', '🌐 Şəbəkə xətası: CORS bloku və ya internet problemi.\n\nConsole-da (F12) tam xətaya baxın.');
-    } else {
-      addMessage('bot', `❌ Xəta: ${err.message}\n\nF12 → Console-a baxın.`);
-    }
-
+    console.error('Fetch xətası:', err);
+    hideTyping();
+    addMsg('bot',
+      '🌐 Şəbəkə xətası baş verdi.\n' +
+      'İnternet bağlantınızı yoxlayın və yenidən cəhd edin.'
+    );
   } finally {
-    isLoading = false;
+    loading = false;
     sendBtn.disabled = false;
     input.focus();
   }
